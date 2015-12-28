@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author electro__rage
  */
-@WebServlet(urlPatterns = {"/UpdateTrain"})
-public class UpdateTrain extends HttpServlet {
+@WebServlet(urlPatterns = {"/GetTrains"})
+public class GetTrains extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,6 @@ public class UpdateTrain extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String Id = request.getParameter("Id");
-            String Capacity = request.getParameter("Capacity");
-            String Type = request.getParameter("Type");
-            
             Database db = new Database();
             db.setPassword("password");
             db.setUser("root");
@@ -48,32 +44,36 @@ public class UpdateTrain extends HttpServlet {
             db.connection();
             
             ResultSet rs = db.Stmt.executeQuery("SELECT *FROM Train");
-            boolean good = false;
+            out.println("<table border = 1>");
+            out.println("<tr><td>Train Id</td><td> Train Cpacity</td><td>Train Type</td></tr>");
             while (rs.next()) {
-                if (rs.getString("Id").equals(Id)) good = true;
+                out.println("<tr>");
+                    out.println("<td>");
+                        out.println(rs.getString("Id"));
+                    out.println("</td>");
+                    out.println("<td>");
+                        out.println(rs.getString("Capacity"));
+                    out.println("</td>");
+                    out.println("<td>");
+                        out.println(rs.getString("Type"));
+                    out.println("</td>");
+                out.println("</tr>");
             }
-
+            out.println("</table>");
+            
+            /*
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Update Train</title>");            
+            out.println("<title>Servlet GetTrains</title>");            
             out.println("</head>");
             out.println("<body>");
-            if (!good) {
-                out.println("Wrong Train Id!!!<br>");
-            } else {
-                String Qry = "UPDATE Train SET Capacity=\'" + Capacity + "\', Type=\'" + Type + "\' WHERE Id=" + Id;
-                int res = db.Stmt.executeUpdate(Qry);
-                out.println("Train Details updated successfuly. ~_^<br>");
-            }
-            
-            out.println("<form action = \"update_train.jsp\">");
-            out.println("<input type = \"submit\" value = \"back\"/> <br>");
-            out.println("</form>");
+            out.println("<h1>Servlet GetTrains at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            */
         } catch (SQLException ex) {
-            Logger.getLogger(UpdateTrain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GetTrains.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

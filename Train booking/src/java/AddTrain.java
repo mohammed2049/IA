@@ -40,7 +40,7 @@ public class AddTrain extends HttpServlet {
             
             Database db = new Database();
             db.setUrl("jdbc:mysql://localhost/TrainBooking");
-            db.setPassword("thecoolwolf1");
+            db.setPassword("password");
             db.setUser("root");
             db.connection();
             
