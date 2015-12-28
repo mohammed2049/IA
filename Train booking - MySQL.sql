@@ -35,7 +35,7 @@ Create Table Registered
   TripName varchar(100) REFERENCES Trip(Name),
   primary key (UserName, TripName)
 );
--- Train()
+-- Train(Id, Capacity, Type)
 Create Table Train
 (
   Id INT primary key,
