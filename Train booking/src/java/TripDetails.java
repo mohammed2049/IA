@@ -7,6 +7,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,14 @@ public class TripDetails extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-          
+          String name = request.getParameter("trip_name");
+          Database obj = new Database();
+          obj.connection();
+          ResultSet RS = obj.getTrip(name);
+          System.out.println(RS);
+          System.out.println("--------------------------------------");
+          request.setAttribute("RS", RS);
+          request.getRequestDispatcher("/trip_details.jsp").forward(request, response);
         }
     }
 

@@ -14,8 +14,48 @@
     </head>
     <body>
       <table>
-        <% ResultSet RS = (ResultSet)request.getAttribute("RS"); %>
-        
+        <% ResultSet RS = (ResultSet)request.getAttribute("RS");
+           RS.next();
+        %>
+                 <tr>
+                     <td>Name: </td>
+                     <td>
+                         <%= RS.getString("Name")%>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Source: </td>
+                     <td>
+                         <%= RS.getString("Source")%>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Destination: </td>
+                     <td>
+                         <%= RS.getString("Destination")%>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Start Time: </td>
+                     <td>
+                         <%= RS.getString("StartTime")%>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>End Time: </td>
+                     <td>
+                         <%= RS.getString("EndTime")%>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Price: </td>
+                     <td>
+                         <%= RS.getString("Price")%>
+                     </td>
+                 </tr>    
       </table>
+                     <form action="LoginController">
+                         <input type="submit" value="back"/>
+                     </form>
     </body>
 </html>

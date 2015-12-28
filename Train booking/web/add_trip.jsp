@@ -12,15 +12,16 @@
         <title>Add Trip</title>
         <script>
             function valid(form){
+                alert(form.price.value);
                 if(form.name.value === "")
                     return false;
-                if(form.source.value === "")   
+                if(form.source.value === "")
                     return false;
-                if(form.destination.value === "")   
+                if(form.destination.value === "")
                     return false;
-                if(form.price.value < 0)   
+                if(form.price.value === "" || form.price.value < 0)
                     return false;
-                return true;
+                return false;
             }
         </script>
     </head>

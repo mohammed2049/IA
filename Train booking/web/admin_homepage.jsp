@@ -25,10 +25,10 @@
                   out.print(tripName);
                   out.print("</td>");
                   out.print("<td>");
-                  out.print("<a href='TripDetails?trip_name='" + tripName + "> Details </a>");
+                  out.print("<a href=TripDetails?trip_name=" + tripName + "> Details </a>");
                   out.print("</td>");
                   out.print("<td>");
-                  out.print("<a href='EditTrip?trip_name='" + tripName + "> Edit </a>");
+                  out.print("<a href=EditTrip?trip_name=" + tripName + "> Edit </a>");
                   out.print("</td>");
                   out.print("</tr>");
               }
