@@ -1,3 +1,4 @@
+import com.sun.xml.ws.transport.tcp.io.OutputWriter;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,11 +16,17 @@ public class Database {
     public static Connection Con = null;
     public static Statement Stmt = null;
     private static String url = "jdbc:mysql://localhost:3306/TrainBooking";
-    private static String user = "root";
-    private static String password = "password";
+    private static String user = "IA";
+    private static String password = "2049";
+
 
     public Database() {
-        
+        Connection Con = null;
+        Statement Stmt = null;
+        String url = null;
+        String user = null;
+        String password = null;
+  
     }
     
     public void connection(){
@@ -35,6 +42,58 @@ public class Database {
             System.err.println("Exception: " + cnfe);
         }
     }
+     public ResultSet getAllTrips(){
+        ResultSet RS = null;
+        try {
+            RS = Stmt.executeQuery("SELECT * FROM Trip;");
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return RS;
+    }
+    public ResultSet getTrip(String name){
+        ResultSet RS = null;
+        try {
+            RS = Stmt.executeQuery("SELECT * FROM Trip where Name='" + name + "';");
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return RS;
+    } 
+    public void saveTrip(String name , String source , String destination , String startTime , String endTime , String price){
+//        startTime = "2015-12-28 12:12";
+//        endTime = "2015-12-30 01:02";
+        String s = "INSERT INTO Trip\n" +
+                       "(Name,\n" +
+                       "Source,\n" +
+                       "Destination,\n" +
+                       "StartTime,\n" +
+                       "EndTime,\n" +
+                       "Price)\n" +
+                       "VALUES\n" +
+                       "('" + name + "','"+ source +"','"+ destination +"','"+ startTime +"','"+ endTime +"','"+ price +"');";
+        System.out.println(s);
+        
+        try {
+            int row = Stmt.executeUpdate(s);
+            System.out.println(row);
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     public void updateTrip(String name , String source , String destination , String startTime , String endTime , String price , String cap){
+//        startTime = "2015-12-28 12:12";
+//        endTime = "2015-12-30 01:02";
+        String s = "UPDATE Trip SET Source=\'" + source + "\', Destination=\'" + destination + "\', StartTime=\'"+ startTime + "\', EndTime=\'" + endTime + "\', Price=\'" + price + "\', Capacity=\'" + cap +"\' WHERE Name = '" + name + "'";
+        System.out.println(s);    
+        try {
+            int row = Stmt.executeUpdate(s);
+            System.out.println(row);
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+
     public void setUrl(String url){
         this.url = url;
     }

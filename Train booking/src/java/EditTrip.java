@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -14,10 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-@WebServlet(urlPatterns = {"/LoginController"})
-
-public class LoginController extends HttpServlet {
+/**
+ *
+ * @author mohammed
+ */
+@WebServlet(name = "EditTrip", urlPatterns = {"/EditTrip"})
+public class EditTrip extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,57 +34,16 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /////////////////////////////////////////////////////////////
-        Database obj = new Database();
-        obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
-        obj.setUser("root");
-        obj.setPassword("password");
-        obj.connection();
-        ///////////////////////////////////////////////////////////// connection
-        ResultSet RS = null;
-        try {
-            
-            RS = obj.Stmt.executeQuery("SELECT * FROM User;");
-            
-            boolean flag = true;
-            String userName = request.getParameter("UserName");
-            String password = request.getParameter("Password");
-            String Admin = null;
-            while(RS.next()){ // check if the userName is exist
-                String UserName = RS.getString("UserName");
-                String Password = RS.getString("Password");
-                Admin = RS.getString("Admin");
-                if(userName.equals(UserName) && password.equals(Password)){
-                    flag = false;
-                    break;
-                }
-            }
-            
-            if(flag == true){
-                request.getRequestDispatcher("/index.html").forward(request, response);
-            }
-            
-            // insert into the data base.
-            
-            HttpSession session= request.getSession();
-            int admin = Integer.parseInt(Admin);
-            if(admin == 0){
-                session.setAttribute("name",userName);
-                session.setAttribute("logged_in", true);
-                session.setAttribute("admin", false);
-                request.getRequestDispatcher("/CustomerHomepage").forward(request, response);
-            }
-            else{
-                ResultSet RS2 = obj.getAllTrips();
-                request.setAttribute("RS", RS2);
-                session.setAttribute("name",userName);
-                session.setAttribute("logged_in", true);
-                session.setAttribute("admin", true);
-                request.getRequestDispatcher("/admin_homepage.jsp").forward(request, response);
-            }
-            
-        } catch (Exception cnfe) {
-                System.err.println("Exception: " + cnfe);
+        try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession(true);
+            String name = request.getParameter("trip_name");
+            session.setAttribute("TripName", name);
+            Database obj = new Database();
+            obj.connection();
+            ResultSet RS = obj.getTrip(name);
+         
+            request.setAttribute("RS", RS);
+            request.getRequestDispatcher("/edit_trip.jsp").forward(request, response);
         }
     }
 

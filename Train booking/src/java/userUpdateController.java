@@ -7,17 +7,19 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-
-@WebServlet(urlPatterns = {"/LoginController"})
-
-public class LoginController extends HttpServlet {
+/**
+ *
+ * @author momen
+ */
+public class userUpdateController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,57 +33,55 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /////////////////////////////////////////////////////////////
-        Database obj = new Database();
-        obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
-        obj.setUser("root");
-        obj.setPassword("password");
-        obj.connection();
-        ///////////////////////////////////////////////////////////// connection
-        ResultSet RS = null;
-        try {
             
-            RS = obj.Stmt.executeQuery("SELECT * FROM User;");
             
-            boolean flag = true;
-            String userName = request.getParameter("UserName");
-            String password = request.getParameter("Password");
-            String Admin = null;
-            while(RS.next()){ // check if the userName is exist
-                String UserName = RS.getString("UserName");
-                String Password = RS.getString("Password");
-                Admin = RS.getString("Admin");
-                if(userName.equals(UserName) && password.equals(Password)){
-                    flag = false;
-                    break;
-                }
-            }
+//            if(Admin == null){
+//                request.getRequestDispatcher("/customer_homepage.jsp").forward(request, response);
+//            }
+//            else{
+//                 request.getRequestDispatcher("/admin_homepage.jsp").forward(request, response);
+//            }
+        
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            /////////////////////////////////////////////////////////////
+            Database obj = new Database();
+            obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
+            obj.setUser("root");
+            obj.setPassword("1234");
+            obj.connection();
+            ///////////////////////////////////////////////////////////// connection
             
-            if(flag == true){
-                request.getRequestDispatcher("/index.html").forward(request, response);
-            }
+            String FirstName = request.getParameter("Fname");
+            String LastName = request.getParameter("Lname");
+            String UserName = request.getParameter("UserName");
+            String Email = request.getParameter("Email");
+            String Password = request.getParameter("Password");
+            String Admin = request.getParameter("Admin");
+            int admin = 0;
+            if(Admin != null)   admin = 1;
+            String CreditCard = request.getParameter("CCard");
+        ////////////////////////////////////////////////////////////
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Update Train</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println(UserName); 
             
-            // insert into the data base.
-            
-            HttpSession session= request.getSession();
-            int admin = Integer.parseInt(Admin);
-            if(admin == 0){
-                session.setAttribute("name",userName);
-                session.setAttribute("logged_in", true);
-                session.setAttribute("admin", false);
-                request.getRequestDispatcher("/CustomerHomepage").forward(request, response);
+            int c =  obj.Stmt.executeUpdate("UPDATE User Set FirstName = '" +FirstName+ "' ,LastName = '"+LastName+ "' ,Email = '"+Email+ "' ,Password = '"+Password+ "' ,admin = '"+admin+ "',CreditCard = '"+CreditCard+ "' WHERE UserName = '"+UserName+ "'");
+
+            if(admin == 1){
+                
             }
             else{
-                ResultSet RS2 = obj.getAllTrips();
-                request.setAttribute("RS", RS2);
-                session.setAttribute("name",userName);
-                session.setAttribute("logged_in", true);
-                session.setAttribute("admin", true);
-                request.getRequestDispatcher("/admin_homepage.jsp").forward(request, response);
+                
             }
-            
-        } catch (Exception cnfe) {
-                System.err.println("Exception: " + cnfe);
+            out.println("</body>");
+            out.println("</html>");
+        } catch (SQLException ex) {
+            Logger.getLogger(userUpdateController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

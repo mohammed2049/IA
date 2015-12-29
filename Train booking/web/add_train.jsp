@@ -18,8 +18,8 @@
             <input type="submit" value ="submit"/><br>
         </form>
         
-        <form action = "admin_home.jsp">
-            <input type ="submit" value="submit"/><br>
+        <form action = "LoginController">
+            <input type ="submit" value="Back"/><br>
         </form>
         
         <form action = "">

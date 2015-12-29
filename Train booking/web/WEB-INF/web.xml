@@ -15,6 +15,13 @@
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
+        
+        <servlet-name>userUpdateController</servlet-name>
+        <servlet-class>userUpdateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userUpdateController</servlet-name>
+        <url-pattern>/userUpdateController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
