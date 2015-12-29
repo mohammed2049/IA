@@ -33,13 +33,13 @@ public class SignOut extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-//              HttpSession session = request.getSession(); 
-//              if (session != null) {
-//                    session.invalidate();
-//               }
+              HttpSession session = request.getSession(); 
+              if (session != null) {
+                    session.invalidate();
+               }
 //              System.out.println("----------------------------------------------------");
 //              request.getRequestDispatcher("/index.html").forward(request, response);
-//              response.sendRedirect("/Train_booking");
+              response.sendRedirect("/Train_booking");
             /* TODO output your page here. You may use following sample code. */
 //            out.println("<!DOCTYPE html>");
 //            out.println("<html>");

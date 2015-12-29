@@ -98,7 +98,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td> <input type="submit" value="Sign Up"> </td>
+                    <td> <input type="submit" value="Edit"> </td>
                 </tr>
             </table>
         </form>
