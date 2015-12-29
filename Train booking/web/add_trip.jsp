@@ -12,7 +12,6 @@
         <title>Add Trip</title>
         <script>
             function valid(form){
-                alert(form.price.value);
                 if(form.name.value === "")
                     return false;
                 if(form.source.value === "")
@@ -21,7 +20,7 @@
                     return false;
                 if(form.price.value === "" || form.price.value < 0)
                     return false;
-                return false;
+                return true;
             }
         </script>
     </head>

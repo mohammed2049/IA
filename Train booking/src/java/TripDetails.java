@@ -38,8 +38,7 @@ public class TripDetails extends HttpServlet {
           Database obj = new Database();
           obj.connection();
           ResultSet RS = obj.getTrip(name);
-          System.out.println(RS);
-          System.out.println("--------------------------------------");
+
           request.setAttribute("RS", RS);
           request.getRequestDispatcher("/trip_details.jsp").forward(request, response);
         }

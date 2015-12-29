@@ -38,5 +38,8 @@
         <form action="add_trip.jsp">
             <input type="submit" value="Add Trip"/>
         </form>
+        <form action="#">
+            <input type="submit" value="Add Train"/>
+        </form>
     </body>
 </html>

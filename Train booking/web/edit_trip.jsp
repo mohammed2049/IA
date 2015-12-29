@@ -1,19 +1,31 @@
-<%--
-    Document   : admin_homepage
-    Created on : Dec 28, 2015, 5:16:40 PM
+<%-- 
+    Document   : edit_trip
+    Created on : Dec 29, 2015, 2:05:38 AM
     Author     : mohammed
 --%>
 
-<%@page import="java.sql.*"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Details</title>
+        <title>Edit Trip</title>
+        <script>
+            function valid(form){
+                if(form.source.value === "")
+                    return false;
+                if(form.destination.value === "")
+                    return false;
+                if(form.price.value === "" || form.price.value < 0)
+                    return false;
+                return true;
+            }
+        </script>
     </head>
     <body>
-      <table>
+        <form action="UpdateTrip" onsubmit="return valid(this);">
+        <table>
         <% ResultSet RS = (ResultSet)request.getAttribute("RS");
            RS.next();
         %>
@@ -26,48 +38,39 @@
                  <tr>
                      <td>Source: </td>
                      <td>
-                         <%= RS.getString("Source")%>
+                         <input type="text"  name = "source" value = <%= RS.getString("Source")%> />
                      </td>
                  </tr>
                  <tr>
                      <td>Destination: </td>
                      <td>
-                         <%= RS.getString("Destination")%>
+                         <input type="text" name= "destination" value = <%= RS.getString("Destination")%> />
                      </td>
                  </tr>
                  <tr>
                      <td>Start Time: </td>
                      <td>
-                         <%= RS.getString("StartTime")%>
+                         <input type="datetime-local" name="startTime" value = <%= RS.getString("StartTime")%> />
                      </td>
                  </tr>
                  <tr>
                      <td>End Time: </td>
                      <td>
-                         <%= RS.getString("EndTime")%>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td>Capacity: </td>
-                     <td>
-                         <%= RS.getString("Capacity")%>
-                     </td>
-                 </tr>
-                 <tr>
-                     <td> Reserved: </td>
-                     <td>
-                         <%= RS.getString("Reserved")%>
+                        <input type="datetime-local" name="endTime" value = <%= RS.getString("EndTime")%> />
                      </td>
                  </tr>
                  <tr>
                      <td>Price: </td>
                      <td>
-                         <%= RS.getString("Price")%>
+                         <input type="number" name="price" value = <%= RS.getString("Price")%> />
                      </td>
-                 </tr>    
-      </table>
-                     <form action="LoginController">
-                         <input type="submit" value="back"/>
-                     </form>
+                 </tr>
+                 <tr>
+                     <td>
+                        <input type="submit" value="Save">
+                     </td>
+                 </tr>
+        </table>
+       </form>
     </body>
 </html>

@@ -74,7 +74,20 @@ public class Database {
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+     public void updateTrip(String name , String source , String destination , String startTime , String endTime , String price){
+//        startTime = "2015-12-28 12:12";
+//        endTime = "2015-12-30 01:02";
+        String s = "UPDATE Trip SET Source=\'" + source + "\', Destination=\'" + destination + "\', StartTime=\'"+ startTime + "\', EndTime=\'" + endTime + "\', Price=\'" + price +"\' WHERE Name = '" + name + "'";
+        System.out.println(s);    
+        try {
+            int row = Stmt.executeUpdate(s);
+            System.out.println(row);
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } 
+
     public void setUrl(String url){
         this.url = url;
     }
