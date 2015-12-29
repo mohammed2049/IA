@@ -19,11 +19,15 @@ Create Table User
 Create Table Trip
 (
   Name varchar(100) primary key,
+  TrainId INT REFERENCES Train(Id),
   Source varchar(100) NOT NULL,
   Destination Varchar(100) NOT NULL,
   StartTime TIMESTAMP NOT NULL,
   EndTime TIMESTAMP NOT NULL,
+<<<<<<< HEAD
   Capacity INT DEFAULT 0,
+=======
+>>>>>>> master
   Price INT NOT NULL,
   Reserved INT DEFAULT 0
 );
@@ -33,4 +37,11 @@ Create Table Registered
   UserName varchar(100) REFERENCES User(UserName),
   TripName varchar(100) REFERENCES Trip(Name),
   primary key (UserName, TripName)
+);
+-- Train(Id, Capacity, Type), Capacity is the number of seats available in the Train.
+Create Table Train
+(
+  Id INT primary key,
+  Capacity INT NOT NULL,
+  Type varchar(100) NOT NULL
 );

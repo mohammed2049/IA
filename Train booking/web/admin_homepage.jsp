@@ -38,8 +38,11 @@
         <form action="add_trip.jsp">
             <input type="submit" value="Add Trip"/>
         </form>
-        <form action="#">
+        <form action="add_train.jsp">
             <input type="submit" value="Add Train"/>
+        </form>
+        <form action="update_train.jsp">
+            <input type="submit" value="Update Train"/>
         </form>
     </body>
 </html>

@@ -45,8 +45,20 @@ public class UpdateTrip extends HttpServlet {
            String startTime = request.getParameter("startTime");
            String endTime = request.getParameter("endTime");
            String price = request.getParameter("price");
+           String trainId = request.getParameter("trainId");
+           String cap = "";
            Database obj = new Database();
            obj.connection();
+           ResultSet rs = obj.Stmt.executeQuery("SELECT *FROM Train");
+           boolean good = false;
+           while (rs.next()) {
+               if (rs.getString("Id").equals(trainId)){
+                   good = true;
+                   cap = rs.getString("Capacity");
+               }
+           }
+           if(!good)
+               return;
            ResultSet RS = obj.getTrip(name);
            RS.next();
            if(startTime == ""){
@@ -55,8 +67,7 @@ public class UpdateTrip extends HttpServlet {
            if(endTime == ""){
                endTime = RS.getString("EndTime");
            }
-           
-           obj.updateTrip(name, source, destination, startTime, endTime, price);
+           obj.updateTrip(name, source, destination, startTime, endTime, price , cap);
            request.getRequestDispatcher("/LoginController").forward(request, response);
         }
     }

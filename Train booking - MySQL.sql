@@ -24,10 +24,7 @@ Create Table Trip
   Destination Varchar(100) NOT NULL,
   StartTime TIMESTAMP NOT NULL,
   EndTime TIMESTAMP NOT NULL,
-<<<<<<< HEAD
   Capacity INT DEFAULT 0,
-=======
->>>>>>> master
   Price INT NOT NULL,
   Reserved INT DEFAULT 0
 );

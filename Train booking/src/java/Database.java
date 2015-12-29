@@ -75,10 +75,10 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public void updateTrip(String name , String source , String destination , String startTime , String endTime , String price){
+     public void updateTrip(String name , String source , String destination , String startTime , String endTime , String price , String cap){
 //        startTime = "2015-12-28 12:12";
 //        endTime = "2015-12-30 01:02";
-        String s = "UPDATE Trip SET Source=\'" + source + "\', Destination=\'" + destination + "\', StartTime=\'"+ startTime + "\', EndTime=\'" + endTime + "\', Price=\'" + price +"\' WHERE Name = '" + name + "'";
+        String s = "UPDATE Trip SET Source=\'" + source + "\', Destination=\'" + destination + "\', StartTime=\'"+ startTime + "\', EndTime=\'" + endTime + "\', Price=\'" + price + "\', Capacity=\'" + cap +"\' WHERE Name = '" + name + "'";
         System.out.println(s);    
         try {
             int row = Stmt.executeUpdate(s);

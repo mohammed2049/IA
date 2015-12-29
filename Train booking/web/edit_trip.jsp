@@ -66,11 +66,34 @@
                      </td>
                  </tr>
                  <tr>
+                     <td>Train: </td>
+                     <td>
+                         <input type="number" name="trainId" value = <%= RS.getString("TrainId")%> />
+                     </td>
+                 </tr>
+                 
+                 <tr>
                      <td>
                         <input type="submit" value="Save">
                      </td>
                  </tr>
         </table>
        </form>
+       <form action = "">
+            <input type ="button" value ="Show Trains" onclick="getTrains()"/>
+        </form>
+        <div id ="Trains"></div>
+        <script>
+            function getTrains() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        document.getElementById("Trains").innerHTML = xhttp.responseText;
+                    }
+                }
+                xhttp.open("GET", "GetTrains", true);
+                xhttp.send();
+            }
+        </script>
     </body>
 </html>
