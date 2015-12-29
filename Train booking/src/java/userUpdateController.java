@@ -46,9 +46,9 @@ public class userUpdateController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             /////////////////////////////////////////////////////////////
             Database obj = new Database();
-            obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
-            obj.setUser("root");
-            obj.setPassword("1234");
+//            obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
+//            obj.setUser("root");
+//            obj.setPassword("1234");
             obj.connection();
             ///////////////////////////////////////////////////////////// connection
             

@@ -3,7 +3,6 @@
     Created on : Dec 28, 2015, 5:16:40 PM
     Author     : mohammed
 --%>
-
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

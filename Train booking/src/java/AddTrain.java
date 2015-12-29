@@ -39,9 +39,9 @@ public class AddTrain extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             
             Database db = new Database();
-            db.setUrl("jdbc:mysql://localhost/TrainBooking");
-            db.setPassword("password");
-            db.setUser("root");
+//            db.setUrl("jdbc:mysql://localhost/TrainBooking");
+//            db.setPassword("password");
+//            db.setUser("root");
             db.connection();
             
             ResultSet rs = db.Stmt.executeQuery("SELECT *FROM Train");

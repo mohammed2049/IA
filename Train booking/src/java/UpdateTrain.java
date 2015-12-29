@@ -42,9 +42,9 @@ public class UpdateTrain extends HttpServlet {
             String Type = request.getParameter("Type");
             
             Database db = new Database();
-            db.setPassword("password");
-            db.setUser("root");
-            db.setUrl("jdbc:mysql://localhost/TrainBooking");
+//            db.setPassword("password");
+//            db.setUser("root");
+//            db.setUrl("jdbc:mysql://localhost/TrainBooking");
             db.connection();
             
             ResultSet rs = db.Stmt.executeQuery("SELECT *FROM Train");
@@ -64,6 +64,8 @@ public class UpdateTrain extends HttpServlet {
             } else {
                 String Qry = "UPDATE Train SET Capacity=\'" + Capacity + "\', Type=\'" + Type + "\' WHERE Id=" + Id;
                 int res = db.Stmt.executeUpdate(Qry);
+                Qry = "UPDATE Trip SET Capacity=\'" + Capacity + "\' WHERE TrainId=" + Id;
+                res = db.Stmt.executeUpdate(Qry);
                 out.println("Train Details updated successfuly. ~_^<br>");
             }
             

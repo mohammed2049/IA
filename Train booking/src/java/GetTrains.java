@@ -38,9 +38,9 @@ public class GetTrains extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             Database db = new Database();
-            db.setPassword("password");
-            db.setUser("root");
-            db.setUrl("jdbc:mysql://localhost/TrainBooking");
+//            db.setPassword("password");
+//            db.setUser("root");
+//            db.setUrl("jdbc:mysql://localhost/TrainBooking");
             db.connection();
             
             ResultSet rs = db.Stmt.executeQuery("SELECT *FROM Train");

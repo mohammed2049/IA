@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="jquery.min.js"></script>
         <script>
             var joinCancel = function(tripName,price){
 //                console.log(tripName,price);
@@ -15,7 +15,7 @@
                     if(joined){
                         $.ajax({
                         type: "POST",
-                        url: "http://localhost:8080/Train_booking/CustomerHomepage",
+                        url: "http://localhost:8585/Train_booking/CustomerHomepage",
                         data: data,
                         success: function(data){
                             button.innerHTML="cancel";
@@ -30,7 +30,7 @@
                     if(cancelled){ 
                         $.ajax({
                         type: "POST",
-                        url: "http://localhost:8080/Train_booking/CustomerHomepage",
+                        url: "http://localhost:8585/Train_booking/CustomerHomepage",
                         data: data,
                         success: function(data){
                             button.innerHTML="join";
@@ -73,5 +73,11 @@
             </tr>
             <%}%>
         </table>
+        <form action="SignOut">
+            <input type="submit" value="SignOut"/>
+        </form>
+        <form action="userUpdate.jsp">
+            <input type="submit" value="Edit User"/>
+        </form>
     </body>
 </html>

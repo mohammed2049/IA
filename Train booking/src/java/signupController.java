@@ -40,9 +40,9 @@ public class signupController extends HttpServlet {
                  
         /////////////////////////////////////////////////////////////
         Database obj = new Database();
-        obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
-        obj.setUser("root");
-        obj.setPassword("password");
+//        obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
+//        obj.setUser("root");
+//        obj.setPassword("password");
         obj.connection();
         ///////////////////////////////////////////////////////////// connection
         
@@ -84,7 +84,7 @@ public class signupController extends HttpServlet {
                 request.getRequestDispatcher("/CustomerHomepage").forward(request, response);
             }
             else{
-                 request.getRequestDispatcher("/admin_homepage.jsp").forward(request, response);
+                 request.getRequestDispatcher("/LoginController").forward(request, response);
             }
             
         } catch (Exception cnfe) {

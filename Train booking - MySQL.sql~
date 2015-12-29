@@ -3,6 +3,7 @@ use TrainBooking;
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Trip;
 DROP TABLE IF EXISTS Registered;
+DROP TABLE IF EXISTS Train;
 -- User(FirstName , LastName , UserName , email , City , password , Admin? , creditCard)
 Create Table User
 (
@@ -24,10 +25,7 @@ Create Table Trip
   Destination Varchar(100) NOT NULL,
   StartTime TIMESTAMP NOT NULL,
   EndTime TIMESTAMP NOT NULL,
-<<<<<<< HEAD
   Capacity INT DEFAULT 0,
-=======
->>>>>>> master
   Price INT NOT NULL,
   Reserved INT DEFAULT 0
 );

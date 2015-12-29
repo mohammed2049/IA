@@ -39,8 +39,9 @@ public class CustomerHomepage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Database obj = new Database();
-            HttpSession session= request.getSession();
             
+            HttpSession session= request.getSession();
+            System.out.println(session + "--------------------------------------------");
             String current_user=
                     "\'"+session.getAttribute("name")+"\'";
             String query="select * from Trip"
@@ -52,7 +53,8 @@ public class CustomerHomepage extends HttpServlet {
             query="select * from Trip"
                     + " where Name in(select TripName from Registered where UserName = "+current_user+") ";
             res= Database.getQuery(query);
-            request.setAttribute("joined" , res);             
+            request.setAttribute("joined" , res);
+            System.out.println("--------------------------------------aaaaas");
             request.getRequestDispatcher("/customer_homepage.jsp").forward(request, response);
         }
     }

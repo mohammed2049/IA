@@ -3,7 +3,6 @@
     Created on : Dec 29, 2015, 2:05:38 AM
     Author     : mohammed
 --%>
-
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,12 +18,14 @@
                     return false;
                 if(form.price.value === "" || form.price.value < 0)
                     return false;
+                if(form.trainId.value == "")
+                    return false;
                 return true;
             }
         </script>
     </head>
     <body>
-        <form action="UpdateTrip" onsubmit="return valid(this);">
+        <form action="UpdateTrip" onsubmit="return valid(this);" method="POST">
         <table>
         <% ResultSet RS = (ResultSet)request.getAttribute("RS");
            RS.next();

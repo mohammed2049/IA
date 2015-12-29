@@ -43,7 +43,9 @@ public class AddTripController extends HttpServlet {
            Database obj = new Database();
            obj.connection();
            obj.saveTrip(name, source, destination, startTime, endTime, price);
-           request.getRequestDispatcher("/LoginController").forward(request, response);           
+           ResultSet RS2 = obj.getAllTrips();
+           request.setAttribute("RS", RS2);
+           request.getRequestDispatcher("/admin_homepage.jsp").forward(request, response);           
         }
     }
 

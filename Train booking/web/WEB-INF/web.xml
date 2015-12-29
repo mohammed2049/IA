@@ -8,6 +8,10 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>LoginController</servlet-class>
     </servlet>
+    <servlet>
+         <servlet-name>userUpdateController</servlet-name>
+         <servlet-class>userUpdateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signupController</servlet-name>
         <url-pattern>/signupController</url-pattern>
@@ -16,9 +20,7 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
         
-        <servlet-name>userUpdateController</servlet-name>
-        <servlet-class>userUpdateController</servlet-class>
-    </servlet>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>userUpdateController</servlet-name>
         <url-pattern>/userUpdateController</url-pattern>

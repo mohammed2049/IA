@@ -4,7 +4,6 @@
     Author     : momen
 --%>
 
-
 <%@page import="java.sql.*"%>
 <% Class.forName("com.mysql.jdbc.Driver"); %>
 
@@ -31,14 +30,14 @@
     <body>
         <%
             String url = "jdbc:mysql://localhost:3306/TrainBooking";
-            String user = "root"; //write your username
-            String password = "1234"; // write your password
+            String user = "IA"; //write your username
+            String password = "2049"; // write your password
             Connection Con = null;
             Statement Stmt = null;
             session = request.getSession(); 
 
             ResultSet RS = null;
-            String UserName = "momen";//session.getAttribute("name").toString(); 
+            String UserName = session.getAttribute("name").toString(); 
              String FirstName = "";
              String LastName = "";
              String Email = "";
@@ -64,7 +63,7 @@
              
             
         %>   
-        <form onsubmit="return signup(this);" action="userUpdateController" method="GET">
+        <form onsubmit="return signup(this);" action="userUpdateController" method="POST">
             <table>
                 <tr>
                     <td>User Name</td>

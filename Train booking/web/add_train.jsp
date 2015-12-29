@@ -3,7 +3,6 @@
     Created on : Dec 28, 2015, 11:07:04 PM
     Author     : electro__rage
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

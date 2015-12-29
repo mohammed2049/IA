@@ -33,20 +33,24 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         /////////////////////////////////////////////////////////////
         Database obj = new Database();
-        obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
-        obj.setUser("root");
-        obj.setPassword("password");
+//        obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
+//        obj.setUser("IA");
+//        obj.setPassword("2049");
         obj.connection();
+        HttpSession session = request.getSession();
         ///////////////////////////////////////////////////////////// connection
         ResultSet RS = null;
+        String userName="";
+        String password="";
+        String Admin="0";
         try {
-            
+            if(session.getAttribute("logged_in") == null){
             RS = obj.Stmt.executeQuery("SELECT * FROM User;");
             
             boolean flag = true;
-            String userName = request.getParameter("UserName");
-            String password = request.getParameter("Password");
-            String Admin = null;
+            userName = request.getParameter("UserName");
+            password = request.getParameter("Password");
+            Admin = null;
             while(RS.next()){ // check if the userName is exist
                 String UserName = RS.getString("UserName");
                 String Password = RS.getString("Password");
@@ -60,23 +64,33 @@ public class LoginController extends HttpServlet {
             if(flag == true){
                 request.getRequestDispatcher("/index.html").forward(request, response);
             }
-            
+            }else{
+                userName= session.getAttribute("name").toString();
+                Admin= session.getAttribute("admin").toString();
+                if(Admin.equals("Yes"))
+                    Admin= "1";
+                else
+                    Admin="0";
+            }
             // insert into the data base.
             
-            HttpSession session= request.getSession();
+            
             int admin = Integer.parseInt(Admin);
+             System.out.println("_____________________________"+admin);
             if(admin == 0){
                 session.setAttribute("name",userName);
-                session.setAttribute("logged_in", true);
-                session.setAttribute("admin", false);
+                session.setAttribute("logged_in", "Yes");
+                session.setAttribute("admin", "No");
+                System.out.println("--------------------------------------aaaaasssssssssss");
                 request.getRequestDispatcher("/CustomerHomepage").forward(request, response);
             }
             else{
+                 System.out.println("_____________________________here");
                 ResultSet RS2 = obj.getAllTrips();
                 request.setAttribute("RS", RS2);
                 session.setAttribute("name",userName);
-                session.setAttribute("logged_in", true);
-                session.setAttribute("admin", true);
+                session.setAttribute("logged_in", "Yes");
+                session.setAttribute("admin", "Yes");
                 request.getRequestDispatcher("/admin_homepage.jsp").forward(request, response);
             }
             

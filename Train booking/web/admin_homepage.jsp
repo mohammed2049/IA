@@ -44,5 +44,11 @@
         <form action="update_train.jsp">
             <input type="submit" value="Update Train"/>
         </form>
+        <form action="userUpdate.jsp">
+            <input type="submit" value="Edit User"/>
+        </form>
+        <form action="SignOut">
+            <input type="submit" value="SignOut"/>
+        </form>
     </body>
 </html>
