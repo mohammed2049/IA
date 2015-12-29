@@ -25,7 +25,8 @@ Create Table Trip
   StartTime TIMESTAMP NOT NULL,
   EndTime TIMESTAMP NOT NULL,
   Price INT NOT NULL,
-  Reserved INT DEFAULT 0
+  Reserved INT DEFAULT 0,
+  Capacity INT DEFAULT 0
 );
 -- Registered(UserName , TripName)
 Create Table Registered
