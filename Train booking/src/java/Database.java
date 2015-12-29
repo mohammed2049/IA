@@ -1,7 +1,6 @@
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,9 +14,9 @@ import java.util.logging.Logger;
 public class Database {
     public static Connection Con = null;
     public static Statement Stmt = null;
-    private static String url = null;
-    private static String user = null;
-    private static String password = null;
+    private static String url = "jdbc:mysql://localhost:3306/TrainBooking";
+    private static String user = "root";
+    private static String password = "password";
 
     public Database() {
         
@@ -53,5 +52,18 @@ public class Database {
     }
     public String getPassword(){
         return password;
+    }
+    public static ResultSet getQuery(String query) throws ClassNotFoundException, SQLException{
+    Class.forName("com.mysql.jdbc.Driver");
+    java.sql.Connection con = DriverManager.getConnection(url, user, password);
+    Statement  stmnt = con.createStatement();
+    ResultSet RS = stmnt.executeQuery(query);
+    return RS;
+    }
+    public static void insertQuery(String query) throws ClassNotFoundException, SQLException{
+        Class.forName("com.mysql.jdbc.Driver");
+        java.sql.Connection con = DriverManager.getConnection(url, user, password);
+        Statement  stmnt = con.createStatement();
+        stmnt.executeUpdate(query);
     }
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -41,7 +42,7 @@ public class signupController extends HttpServlet {
         Database obj = new Database();
         obj.setUrl("jdbc:mysql://localhost:3306/TrainBooking");
         obj.setUser("root");
-        obj.setPassword("1234");
+        obj.setPassword("password");
         obj.connection();
         ///////////////////////////////////////////////////////////// connection
         
@@ -73,11 +74,14 @@ public class signupController extends HttpServlet {
             int admin = 0;
             if(Admin != null)   admin = 1;
             String CreditCard = request.getParameter("CCard");
-            
+            HttpSession session= request.getSession();
             int c = obj.Stmt.executeUpdate("INSERT INTO User (FirstName, LastName,UserName, Email ,Password, Admin , CreditCard )"
                     + " VALUES ('" +FirstName+ "', '"+LastName+ "' , '"+UserName+ "' , '"+Email+ "' , '"+Password+ "' , '"+admin+ "', '"+CreditCard+ "' );");
             if(Admin == null){
-                request.getRequestDispatcher("/customer_homepage.jsp").forward(request, response);
+                session.setAttribute("name",userName);
+                session.setAttribute("logged_in", true);
+                session.setAttribute("admin", false);
+                request.getRequestDispatcher("/CustomerHomepage").forward(request, response);
             }
             else{
                  request.getRequestDispatcher("/admin_homepage.jsp").forward(request, response);
