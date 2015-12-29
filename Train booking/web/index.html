@@ -12,11 +12,13 @@ and open the template in the editor.
     </head>
     <body>
         <div>Login</div>
-        <form action="LoginController" method="Post">
+        <form action="LoginController" method="Get">
             User Name<input name="UserName" type="text"><br>
             password : <input name="Password" type="password"> <br>
-            <input type="submit">
+            <input type="submit" value = "login">
         </form>
-
+        <form action="signup.jsp" method="Get">
+            <input type="submit" value = "Signup">
+        </form>
     </body>
 </html>

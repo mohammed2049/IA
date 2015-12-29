@@ -49,7 +49,7 @@ public class LoginController extends HttpServlet {
             while(RS.next()){ // check if the userName is exist
                 String UserName = RS.getString("UserName");
                 String Password = RS.getString("Password");
-                String admin = RS.getString("Admin");
+                Admin = RS.getString("Admin");
                 if(userName.equals(UserName) && password.equals(Password)){
                     flag = false;
                     break;
@@ -63,9 +63,9 @@ public class LoginController extends HttpServlet {
             // insert into the data base.
             
             
-            int admin = 0;
-            if(Admin != null)   admin = 1;
-            if(Admin == null){
+            int admin = Integer.parseInt(Admin);
+            if(admin == 0){
+                
                 request.getRequestDispatcher("/customer_homepage.jsp").forward(request, response);
             }
             else{
