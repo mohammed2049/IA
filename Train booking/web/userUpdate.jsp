@@ -35,8 +35,10 @@
             String password = "1234"; // write your password
             Connection Con = null;
             Statement Stmt = null;
+            session = request.getSession(); 
+
             ResultSet RS = null;
-             String UserName = "momen"; 
+            String UserName = "momen";//session.getAttribute("name").toString(); 
              String FirstName = "";
              String LastName = "";
              String Email = "";

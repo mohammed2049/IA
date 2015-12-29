@@ -70,15 +70,14 @@ public class userUpdateController extends HttpServlet {
             out.println("<body>");
             out.println(UserName); 
             
-            obj.StmtP = obj.Con.prepareStatement ("UPDATE User SET FirstName=? WHERE UserName=? "); 
-            obj.StmtP.setString( 1, FirstName ); 
-            obj.StmtP.setString( 2, UserName ); 
-            int c =  obj.StmtP.executeUpdate("UPDATE User Set FirstName = '" +FirstName+ "' WHERE UserName =  '" +UserName+ "');");
+            int c =  obj.Stmt.executeUpdate("UPDATE User Set FirstName = '" +FirstName+ "' ,LastName = '"+LastName+ "' ,Email = '"+Email+ "' ,Password = '"+Password+ "' ,admin = '"+admin+ "',CreditCard = '"+CreditCard+ "' WHERE UserName = '"+UserName+ "'");
 
-       //     ,LastName = '"+LastName+ "' ,Email = '"+Email+ "' ,Password = '"+Password+ "' ,admin = '"+admin+ "',CreditCard = '"+CreditCard+ "' WHERE UserName = '"+UserName+ "');");
-
-            out.println("2222222222222222");
-            
+            if(admin == 1){
+                
+            }
+            else{
+                
+            }
             out.println("</body>");
             out.println("</html>");
         } catch (SQLException ex) {
